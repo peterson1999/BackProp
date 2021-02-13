@@ -39,6 +39,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.Save = new System.Windows.Forms.Button();
+            this.saveWeightsDialog = new System.Windows.Forms.SaveFileDialog();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -140,11 +143,36 @@
             this.label6.TabIndex = 9;
             this.label6.Text = "label6";
             // 
+            // Save
+            // 
+            this.Save.Location = new System.Drawing.Point(38, 133);
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(75, 23);
+            this.Save.TabIndex = 10;
+            this.Save.Text = "Save";
+            this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.Save_Click);
+            // 
+            // saveWeightsDialog
+            // 
+            this.saveWeightsDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.saveWeightsDialog_FileOk);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(38, 89);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.Save);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -178,6 +206,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button Save;
+        private System.Windows.Forms.SaveFileDialog saveWeightsDialog;
+        private System.Windows.Forms.Button button2;
     }
 }
 

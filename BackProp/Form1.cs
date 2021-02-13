@@ -26,17 +26,23 @@ namespace BackProp
             InitializeComponent();
             string path = @"C:\Users\Wilson\Downloads\train.txt";
             string content = "";
-            string[] train;
+            string[] train,ws;
             StreamReader sr = File.OpenText(path);
-            while (sr.ReadLine() != null)
+            while ((content = sr.ReadLine()) != null)
             {
-                content = sr.ReadLine();
+                Console.WriteLine("Content: " + content);
                 train = content.ToLower().Split(';');
                 d.Add(train[0], train[1]);
             }
-            foreach(var word in d.Keys)
+            foreach (var word in d.Keys)
             {
-                allWords.Add(word);
+                ws = word.ToLower().Split(' ');
+                foreach (var w in ws)
+                {
+                    allWords.Add(w);
+                    //Console.WriteLine(w);
+                }
+
             }
             bagofwords = new int[allWords.Count];
             testwords = allWords.ToArray();
@@ -131,12 +137,13 @@ namespace BackProp
         }
         private void Learn_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 foreach(var set in d)
                 {
                     LearnSentences(set.Value, set.Key);
                 }
+                Console.WriteLine("Progress:"+i);
             }
         }
 
@@ -177,6 +184,14 @@ namespace BackProp
             label6.Text = "fear: " + nn.getOuputData(5).ToString();
         }
 
-       
+        private void Save_Click(object sender, EventArgs e)
+        {
+            saveWeightsDialog.ShowDialog();
+        }
+
+        private void saveWeightsDialog_FileOk(object sender, CancelEventArgs e)
+        {
+            nn.saveWeights(saveWeightsDialog.FileName);
+        }
     }
 }
