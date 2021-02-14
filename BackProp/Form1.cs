@@ -15,6 +15,8 @@ namespace BackProp
     public partial class Form1 : Form
     {
         NeuralNet nn;
+        const string bot = "J.A.M.E.S: ";
+        const string you = "You: ";
         string [] words;
         int[] bagofwords;
         string[] testwords;//= { "sandwich", "have", "a", "how", "for", "are", "good", "make", "me", "it", "day", "soon", "nice", "later", "going", "you", "today", "can", "lunch", "is", "see", "to", "talk", "what","goodbye" };
@@ -45,9 +47,6 @@ namespace BackProp
             }
             foreach (var word in d.Keys)
             {
-
-
-
                 ws = word.ToLower().Split(' ');
                 foreach (var w in ws)
                 {
@@ -60,8 +59,6 @@ namespace BackProp
 
                 }
 
-
-
             }
 
             
@@ -73,12 +70,6 @@ namespace BackProp
                 Console.WriteLine(testwords[i]);
             }
             //Console.WriteLine(bagofwords.Length);
-        }
-
-        private void createNNToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            nn = new NeuralNet(allWords.Count, allWords.Count*2, 2);
-
         }
 
         private void LearnSentences( string classifier, string sentence)
@@ -120,27 +111,15 @@ namespace BackProp
                 bagofwords[i] = 0;
             }
         }
-        private void Learn_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < 500; i++)
-            {
-                foreach(var set in d)
-                {
-                    LearnSentences(set.Value, set.Key);
-                   
-                }
-                Console.WriteLine("Progress:" + i);
-            }
-        }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void sendBtn_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < bagofwords.Length; i++)
             {
                 
                 bagofwords[i] = 0;
             }
-            words = textBox1.Text.ToLower().Split(' ');
+            words = messageBox.Text.ToLower().Split(' ');
             foreach (var word in words)
             {
                 Console.WriteLine(word);
@@ -162,19 +141,14 @@ namespace BackProp
             nn.run();
             
             //if (nn.getOuputData(1) > 0.6
-            label1.Text = "greeting: " + nn.getOuputData(0).ToString();
-            label2.Text = "farewell: " + nn.getOuputData(1).ToString();
+            //label1.Text = "greeting: " + nn.getOuputData(0).ToString();
+            //label2.Text = "farewell: " + nn.getOuputData(1).ToString();
 
         }
 
-        private void saveWeightsDialog_FileOk(object sender, CancelEventArgs e)
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            nn.saveWeights(saveWeightsDialog.FileName);
-        }
-
-        private void Save_Click(object sender, EventArgs e)
-        {
-            saveWeightsDialog.ShowDialog();
+            openFileDialog1.ShowDialog();
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -182,9 +156,31 @@ namespace BackProp
             nn.loadWeights(openFileDialog1.FileName);
         }
 
-        private void Load_Click(object sender, EventArgs e)
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
+            saveWeightsDialog.ShowDialog();
+        }
+        private void saveWeightsDialog_FileOk(object sender, CancelEventArgs e)
+        {
+            nn.saveWeights(saveWeightsDialog.FileName);
+        }
+
+        private void createBotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            nn = new NeuralNet(allWords.Count, allWords.Count * 2, 2);
+        }
+
+        private void teachBotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 500; i++)
+            {
+                foreach (var set in d)
+                {
+                    LearnSentences(set.Value, set.Key);
+
+                }
+                Console.WriteLine("Progress:" + i);
+            }
         }
     }
 }
