@@ -94,6 +94,7 @@ namespace Backprop
 				{
 					summation+=hneuron[y].getHactivation()*hneuron[y].getWeight(x);
 				}
+				//Console.WriteLine("Sigmoid:"+sigmoid(summation+oneuron[x].getBias()));
 				oneuron[x].setOActivation(sigmoid(summation+oneuron[x].getBias()));
 				//oneuron[x].setOActivation(sigmoid(summation));
 			}

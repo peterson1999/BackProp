@@ -24,44 +24,45 @@ namespace BackProp
         public Form1()
         {
             InitializeComponent();
-            string path = @"D:\Dev\IS\BackProp\train2.txt";
+            string path = @"C:\Users\Peterson\Downloads\negative-words.txt";
+            string path1 = @"C:\Users\Peterson\Downloads\positive-words.txt";
             string content = "";
             string[] train,ws;
             StreamReader sr = File.OpenText(path);
             while ((content = sr.ReadLine()) != null)
             {
                 //content = sr.ReadLine();
-                train = content.ToLower().Split(';');
-                d.Add(train[0], train[1]);
+                
+                d.Add(content.ToLower(), "positive");
             }
-            foreach(var word in d.Keys)
-            {
-                ws = word.ToLower().Split(' ');
-                foreach (var w in ws)
-                {
-                    if (w == "i" || w == "am")
-                    {
-                        continue;
-                    }
 
-                    else
-                    {
-                        allWords.Add(w);
-                        //Console.WriteLine(w);
-                    }
-                       
-                }
-               
+            sr= File.OpenText(path1);
+            while ((content = sr.ReadLine()) != null)
+            {
+                //content = sr.ReadLine();
+
+                d.Add(content.ToLower(), "negative");
             }
+            foreach (var word in d.Keys)
+            {
+              
+               
+                     allWords.Add(word);
+                        //Console.WriteLine(w);
+                    
+                       
+             }
+
+            
             bagofwords = new int[allWords.Count];
             testwords = allWords.ToArray();
-           
+            Console.WriteLine("bow:"+bagofwords.Length.ToString()+" ,tw:"+testwords.Length.ToString());
             //Console.WriteLine(bagofwords.Length);
         }
 
         private void createNNToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            nn = new NeuralNet(allWords.Count, allWords.Count*3, 6);
+            nn = new NeuralNet(allWords.Count, allWords.Count*2, 2);
 
         }
 
@@ -84,61 +85,19 @@ namespace BackProp
                 nn.setInputs(i, Convert.ToDouble(bagofwords[i]));
             }
 
-            if (classifier == "sadness")
+            if (classifier == "positive")
             {
                 nn.setDesiredOutput(0, 1.0);
                 nn.setDesiredOutput(1, 0.0);
-                nn.setDesiredOutput(2, 0.0);
-                nn.setDesiredOutput(3, 0.0);
-                nn.setDesiredOutput(4, 0.0);
-                nn.setDesiredOutput(5, 0.0);
             }
-            else if (classifier == "joy")
+            else if (classifier == "negative")
             {
                 nn.setDesiredOutput(0, 0.0);
                 nn.setDesiredOutput(1, 1.0);
-                nn.setDesiredOutput(2, 0.0);
-                nn.setDesiredOutput(3, 0.0);
-                nn.setDesiredOutput(4, 0.0);
-                nn.setDesiredOutput(5, 0.0);
+ 
             }
 
-            else if (classifier =="love")
-            {
-                nn.setDesiredOutput(0, 0.0);
-                nn.setDesiredOutput(1, 0.0);
-                nn.setDesiredOutput(2, 1.0);
-                nn.setDesiredOutput(3, 0.0);
-                nn.setDesiredOutput(4, 0.0);
-                nn.setDesiredOutput(5, 0.0);
-            }
-            else if (classifier == "surprise")
-            {
-                nn.setDesiredOutput(0, 0.0);
-                nn.setDesiredOutput(1, 0.0);
-                nn.setDesiredOutput(2, 0.0);
-                nn.setDesiredOutput(3, 1.0);
-                nn.setDesiredOutput(4, 0.0);
-                nn.setDesiredOutput(5, 0.0);
-            }
-            else if (classifier == "anger")
-            {
-                nn.setDesiredOutput(0, 0.0);
-                nn.setDesiredOutput(1, 0.0);
-                nn.setDesiredOutput(2, 0.0);
-                nn.setDesiredOutput(3, 0.0);
-                nn.setDesiredOutput(4, 1.0);
-                nn.setDesiredOutput(5, 0.0);
-            }
-            else if (classifier == "fear")
-            {
-                nn.setDesiredOutput(0, 0.0);
-                nn.setDesiredOutput(1, 0.0);
-                nn.setDesiredOutput(2, 0.0);
-                nn.setDesiredOutput(3, 0.0);
-                nn.setDesiredOutput(4, 0.0);
-                nn.setDesiredOutput(5, 1.0);
-            }
+ 
             //LEARN
             nn.learn();
             for (int i= 0; i < bagofwords.Length; i++)
@@ -148,13 +107,14 @@ namespace BackProp
         }
         private void Learn_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 11; i++)
             {
                 foreach(var set in d)
                 {
                     LearnSentences(set.Value, set.Key);
+                    Console.WriteLine("Progress:" + i);
                 }
-                Console.WriteLine("Progress:" + i);
+               
             }
         }
 
@@ -189,10 +149,7 @@ namespace BackProp
             //if (nn.getOuputData(1) > 0.6
             label1.Text = "sadness: " + nn.getOuputData(0).ToString();
             label2.Text = "joy: " + nn.getOuputData(1).ToString();
-            label3.Text = "love: " + nn.getOuputData(2).ToString();
-            label4.Text = "surprise: " + nn.getOuputData(3).ToString();
-            label5.Text = "anger: " + nn.getOuputData(4).ToString();
-            label6.Text = "fear: " + nn.getOuputData(5).ToString();
+
         }
 
         private void saveWeightsDialog_FileOk(object sender, CancelEventArgs e)
