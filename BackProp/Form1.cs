@@ -24,27 +24,44 @@ namespace BackProp
         public Form1()
         {
             InitializeComponent();
-            string path = @"C:\Users\Wilson\Downloads\train.txt";
+            string path = @"D:\Dev\IS\BackProp\train2.txt";
             string content = "";
-            string[] train;
+            string[] train,ws;
             StreamReader sr = File.OpenText(path);
-            while (sr.ReadLine() != null)
+            while ((content = sr.ReadLine()) != null)
             {
-                content = sr.ReadLine();
+                //content = sr.ReadLine();
                 train = content.ToLower().Split(';');
                 d.Add(train[0], train[1]);
             }
             foreach(var word in d.Keys)
             {
-                allWords.Add(word);
+                ws = word.ToLower().Split(' ');
+                foreach (var w in ws)
+                {
+                    if (w == "i" || w == "am")
+                    {
+                        continue;
+                    }
+
+                    else
+                    {
+                        allWords.Add(w);
+                        //Console.WriteLine(w);
+                    }
+                       
+                }
+               
             }
             bagofwords = new int[allWords.Count];
             testwords = allWords.ToArray();
+           
+            //Console.WriteLine(bagofwords.Length);
         }
 
         private void createNNToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            nn = new NeuralNet(allWords.Count, allWords.Count*2, 6);
+            nn = new NeuralNet(allWords.Count, allWords.Count*3, 6);
 
         }
 
@@ -131,12 +148,13 @@ namespace BackProp
         }
         private void Learn_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 foreach(var set in d)
                 {
                     LearnSentences(set.Value, set.Key);
                 }
+                Console.WriteLine("Progress:" + i);
             }
         }
 
@@ -177,6 +195,14 @@ namespace BackProp
             label6.Text = "fear: " + nn.getOuputData(5).ToString();
         }
 
-       
+        private void saveWeightsDialog_FileOk(object sender, CancelEventArgs e)
+        {
+            nn.saveWeights(saveWeightsDialog.FileName);
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            saveWeightsDialog.ShowDialog();
+        }
     }
 }
