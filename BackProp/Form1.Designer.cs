@@ -54,8 +54,8 @@
             this.createNNToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(674, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(899, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -65,20 +65,20 @@
             this.loadToolStripMenuItem,
             this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.loadToolStripMenuItem.Text = "Load Bot";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.saveToolStripMenuItem.Text = "Save Bot";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -88,28 +88,29 @@
             this.createBotToolStripMenuItem,
             this.teachBotToolStripMenuItem});
             this.createNNToolStripMenuItem.Name = "createNNToolStripMenuItem";
-            this.createNNToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.createNNToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
             this.createNNToolStripMenuItem.Text = "Create";
             // 
             // createBotToolStripMenuItem
             // 
             this.createBotToolStripMenuItem.Name = "createBotToolStripMenuItem";
-            this.createBotToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.createBotToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
             this.createBotToolStripMenuItem.Text = "Create Bot";
             this.createBotToolStripMenuItem.Click += new System.EventHandler(this.createBotToolStripMenuItem_Click);
             // 
             // teachBotToolStripMenuItem
             // 
             this.teachBotToolStripMenuItem.Name = "teachBotToolStripMenuItem";
-            this.teachBotToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.teachBotToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
             this.teachBotToolStripMenuItem.Text = "Teach Bot";
             this.teachBotToolStripMenuItem.Click += new System.EventHandler(this.teachBotToolStripMenuItem_Click);
             // 
             // sendBtn
             // 
-            this.sendBtn.Location = new System.Drawing.Point(547, 363);
+            this.sendBtn.Location = new System.Drawing.Point(729, 447);
+            this.sendBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sendBtn.Name = "sendBtn";
-            this.sendBtn.Size = new System.Drawing.Size(90, 29);
+            this.sendBtn.Size = new System.Drawing.Size(120, 36);
             this.sendBtn.TabIndex = 3;
             this.sendBtn.Text = "Send";
             this.sendBtn.UseVisualStyleBackColor = true;
@@ -127,20 +128,22 @@
             // messageBox
             // 
             this.messageBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.messageBox.Location = new System.Drawing.Point(161, 344);
+            this.messageBox.Location = new System.Drawing.Point(215, 423);
+            this.messageBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.messageBox.Name = "messageBox";
-            this.messageBox.Size = new System.Drawing.Size(370, 71);
+            this.messageBox.Size = new System.Drawing.Size(492, 86);
             this.messageBox.TabIndex = 10;
             this.messageBox.Text = "";
             // 
             // chatBox
             // 
             this.chatBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chatBox.Location = new System.Drawing.Point(161, 56);
+            this.chatBox.Location = new System.Drawing.Point(215, 69);
+            this.chatBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chatBox.Name = "chatBox";
             this.chatBox.ReadOnly = true;
             this.chatBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chatBox.Size = new System.Drawing.Size(476, 261);
+            this.chatBox.Size = new System.Drawing.Size(633, 320);
             this.chatBox.TabIndex = 11;
             this.chatBox.Text = "";
             this.chatBox.TextChanged += new System.EventHandler(this.chatBox_TextChanged);
@@ -149,27 +152,29 @@
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Image = global::BackProp.Properties.Resources.J_A_M_E_S_;
-            this.pictureBox1.Location = new System.Drawing.Point(25, 69);
+            this.pictureBox1.Location = new System.Drawing.Point(33, 85);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(111, 137);
+            this.pictureBox1.Size = new System.Drawing.Size(147, 168);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
-            this.ClientSize = new System.Drawing.Size(674, 461);
+            this.ClientSize = new System.Drawing.Size(899, 567);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.chatBox);
             this.Controls.Add(this.messageBox);
             this.Controls.Add(this.sendBtn);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
-            this.Text = "J.A.M.E.S.";
+            this.Text = "J.A.M.E.S. - Your SIMPLE Customer Service Chatbot";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

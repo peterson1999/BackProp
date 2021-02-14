@@ -26,11 +26,11 @@ namespace BackProp
         public Form1()
         {
             InitializeComponent();
-            string path = @"C:\Users\Peterson\Downloads\greetings.txt";
-            string path1 = @"C:\Users\Peterson\Downloads\farewells.txt";
-            string path2 = @"C:\Users\Peterson\Downloads\complaints.txt";
-            string path3 = @"C:\Users\Peterson\Downloads\order.txt";
-            string path4 = @"C:\Users\Peterson\Downloads\inquiries.txt";
+            string path = @"D:\Dev\IS\BackProp\greetings.txt";
+            string path1 = @"D:\Dev\IS\BackProp\farewells.txt";
+            string path2 = @"D:\Dev\IS\BackProp\complaints.txt";
+            string path3 = @"D:\Dev\IS\BackProp\order.txt";
+            string path4 = @"D:\Dev\IS\BackProp\inquiries.txt";
             string content = "";
             string[] train,ws;
             StreamReader sr = File.OpenText(path);
@@ -211,6 +211,7 @@ namespace BackProp
         public void getResponse(double op0, double op1, double op2,double op3, double op4)
         {
             int value;
+            int flag = 0;
             if (op0 > 0.4)
             {
                 value = RandomNumber(0, 3);
@@ -232,6 +233,7 @@ namespace BackProp
 
             else if(op1>0.4)
             {
+                flag = 1;
                 value = RandomNumber(0, 3);
                 chatBox.Text += bot;
                 switch (value)
@@ -248,61 +250,64 @@ namespace BackProp
                 }
                 chatBox.Text += "\n\n";
             }
-
-            if (op4>0.4)
+            if (flag == 0)
             {
-                value = RandomNumber(0, 3);
-                chatBox.Text += bot;
-                switch (value)
+                if (op4 > 0.4)
                 {
-                    case 0:
-                        chatBox.Text += "Please hold on for a minute, I'll send you more details about that product.";
-                        break;
-                    case 1:
-                        chatBox.Text += "Thanks for asking! I'll send you the product details.";
-                        break;
-                    case 2:
-                        chatBox.Text += "I see you're interested in this product, I can give you more details in a minute";
-                        break;
+                    value = RandomNumber(0, 3);
+                    chatBox.Text += bot;
+                    switch (value)
+                    {
+                        case 0:
+                            chatBox.Text += "Please hold on for a minute, I'll send you more details about that product.";
+                            break;
+                        case 1:
+                            chatBox.Text += "Thanks for asking! I'll send you the product details.";
+                            break;
+                        case 2:
+                            chatBox.Text += "I see you're interested in this product, I can give you more details in a minute";
+                            break;
+                    }
+                    chatBox.Text += "\n\n";
                 }
-                chatBox.Text += "\n\n";
-            }
-            else if (op2 > 0.4)
-            {
-                value = RandomNumber(0, 3);
-                chatBox.Text += bot;
-                switch (value)
+                else if (op2 > 0.4)
                 {
-                    case 0:
-                        chatBox.Text += "Hmmm... I see... I'll transfer you to someone who knows more about your problem.";
-                        break;
-                    case 1:
-                        chatBox.Text += "That sure is a problem, but its okay, I can look for someone who can help you much better.";
-                        break;
-                    case 2:
-                        chatBox.Text += "Uh-oh, that doesnt sound good, maybe someone else can help you, please hold on.";
-                        break;
+                    value = RandomNumber(0, 3);
+                    chatBox.Text += bot;
+                    switch (value)
+                    {
+                        case 0:
+                            chatBox.Text += "Hmmm... I see... I'll transfer you to someone who knows more about your problem.";
+                            break;
+                        case 1:
+                            chatBox.Text += "That sure is a problem, but its okay, I can look for someone who can help you much better.";
+                            break;
+                        case 2:
+                            chatBox.Text += "Uh-oh, that doesnt sound good, maybe someone else can help you, please hold on.";
+                            break;
+                    }
+                    chatBox.Text += "\n\n";
                 }
-                chatBox.Text += "\n\n";
-            }
-            else if (op3 > 0.4)
-            {
-                value = RandomNumber(0, 3);
-                chatBox.Text += bot;
-                switch (value)
+                else if (op3 > 0.4)
                 {
-                    case 0:
-                        chatBox.Text += "For any questions about the status of your order you can use your tracking number. Here is your tracking number :#70790932813";
-                        break;
-                    case 1:
-                        chatBox.Text += "I see you have a question about your order, I'll contact the courier and get back to you!";
-                        break;
-                    case 2:
-                        chatBox.Text += "I understand you have concerns about your order, I can give you the courier's contact number and you can talk to them directly.";
-                        break;
+                    value = RandomNumber(0, 3);
+                    chatBox.Text += bot;
+                    switch (value)
+                    {
+                        case 0:
+                            chatBox.Text += "For any questions about the status of your order you can use your tracking number. Here is your tracking number :#70790932813";
+                            break;
+                        case 1:
+                            chatBox.Text += "I see you have a question about your order, I'll contact the courier and get back to you!";
+                            break;
+                        case 2:
+                            chatBox.Text += "I understand you have concerns about your order, I can give you the courier's contact number and you can talk to them directly.";
+                            break;
+                    }
+                    chatBox.Text += "\n\n";
                 }
-                chatBox.Text += "\n\n";
             }
+           
         }
         public int RandomNumber(int min, int max)
         {
@@ -335,7 +340,7 @@ namespace BackProp
 
         private void teachBotToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < 250; i++)
             {
                 foreach (var set in d)
                 {
