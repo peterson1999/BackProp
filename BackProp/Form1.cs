@@ -26,9 +26,9 @@ namespace BackProp
         public Form1()
         {
             InitializeComponent();
-            string path = @"C:\Users\Peterson\Downloads\greetings.txt";
-            string path1 = @"C:\Users\Peterson\Downloads\farewells.txt";
-            string path2 = @"C:\Users\Peterson\Downloads\complaints.txt";
+            string path = @"C:\Users\Wilson\Downloads\greetings.txt";
+            string path1 = @"C:\Users\Wilson\Downloads\farewells.txt";
+            string path2 = @"C:\Users\Wilson\Downloads\complaints.txt";
             string content = "";
             string[] train,ws;
             StreamReader sr = File.OpenText(path);
@@ -133,14 +133,12 @@ namespace BackProp
 
         private void sendBtn_Click(object sender, EventArgs e)
         {
-            label1.Text = "label1";
-            label2.Text = "label2";
+            string message = messageBox.Text;
             for (int i = 0; i < bagofwords.Length; i++)
             {
-                
                 bagofwords[i] = 0;
             }
-            words = messageBox.Text.ToLower().Split(' ');
+            words = message.ToLower().Split(' ');
             foreach (var word in words)
             {
                 Console.WriteLine(word);
@@ -160,7 +158,7 @@ namespace BackProp
                 nn.setInputs(i, Convert.ToDouble(bagofwords[i]));
             }
             nn.run();
-
+            chatBox.Text += you + message + "\n\n";
             //if (nn.getOuputData(1) > 0.6
             // label1.Text = "greeting: " + nn.getOuputData(0).ToString();
             // label2.Text = "farewell: " + nn.getOuputData(1).ToString();
@@ -170,7 +168,7 @@ namespace BackProp
             Console.WriteLine(nn.getOuputData(1));
             Console.WriteLine(nn.getOuputData(2));
 
-
+            messageBox.Text = "";
         }
 
 
@@ -180,60 +178,68 @@ namespace BackProp
             if (op0 > 0.5)
             {
                 value = RandomNumber(0, 3);
-
+                chatBox.Text += bot;
                 switch (value)
                 {
                     case 0:
-                        label1.Text="Hi! Thank you for reaching out!";
+                        chatBox.Text += "Hi! Thank you for reaching out!";
                         break;
                     case 1:
-                        label1.Text = "Hey, Customer! So good to hear from you!";
+                        chatBox.Text += "Hey, Customer! So good to hear from you!";
                         break;
                     case 2:
-                        label1.Text = "Howdy, Partner!";
+                        chatBox.Text += "Howdy, Partner!";
                         break;
                 }
+                chatBox.Text += "\n\n";
             }
 
             else if(op1>0.5)
             {
                 value = RandomNumber(0, 3);
-
+                chatBox.Text += bot;
                 switch (value)
                 {
                     case 0:
-                        label1.Text = "Bye! We hope to hear from you soon!";
+                        chatBox.Text += "Bye! We hope to hear from you soon!";
                         break;
                     case 1:
-                        label1.Text = "Thank you! Just contact us anytime!";
+                        chatBox.Text += "Thank you! Just contact us anytime!";
                         break;
                     case 2:
-                        label1.Text = "I'm so glad to help you! See you!";
+                        chatBox.Text += "I'm so glad to help you! See you!";
                         break;
                 }
+                chatBox.Text += "\n\n";
             }
 
             if (op2>0.5)
             {
                 value = RandomNumber(0, 3);
-
+                chatBox.Text += bot;
                 switch (value)
                 {
                     case 0:
-                        label2.Text = "Hmmm... I see... I'll transfer you to someone who knows more about your problem.";
+                        chatBox.Text += "Hmmm... I see... I'll transfer you to someone who knows more about your problem.";
                         break;
                     case 1:
-                        label2.Text = "That sure is a problem, but its okay, I can look for someone who can help you much better.";
+                        chatBox.Text += "That sure is a problem, but its okay, I can look for someone who can help you much better.";
                         break;
                     case 2:
-                        label2.Text = "Uh-oh, that doesnt sound good, maybe someone else can help you, please hold on.";
+                        chatBox.Text += "Uh-oh, that doesnt sound good, maybe someone else can help you, please hold on.";
                         break;
                 }
+                chatBox.Text += "\n\n";
             }
         }
         public int RandomNumber(int min, int max)
         {
             return r.Next(min, max);
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -252,7 +258,7 @@ namespace BackProp
 
         private void createBotToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            nn = new NeuralNet(allWords.Count, allWords.Count * 2, 2);
+            nn = new NeuralNet(allWords.Count, allWords.Count * 2, 3);
         }
 
         private void teachBotToolStripMenuItem_Click(object sender, EventArgs e)
@@ -266,6 +272,12 @@ namespace BackProp
                 }
                 Console.WriteLine("Progress:" + i);
             }
+        }
+
+        private void chatBox_TextChanged(object sender, EventArgs e)
+        {
+            chatBox.SelectionStart = chatBox.Text.Length;
+            chatBox.ScrollToCaret();
         }
     }
 }

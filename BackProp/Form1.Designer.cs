@@ -71,14 +71,14 @@
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadToolStripMenuItem.Text = "Load Bot";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save Bot";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -126,6 +126,7 @@
             // 
             // messageBox
             // 
+            this.messageBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.messageBox.Location = new System.Drawing.Point(161, 344);
             this.messageBox.Name = "messageBox";
             this.messageBox.Size = new System.Drawing.Size(370, 71);
@@ -134,12 +135,15 @@
             // 
             // chatBox
             // 
+            this.chatBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chatBox.Location = new System.Drawing.Point(161, 56);
             this.chatBox.Name = "chatBox";
-            this.chatBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chatBox.ReadOnly = true;
+            this.chatBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chatBox.Size = new System.Drawing.Size(476, 261);
             this.chatBox.TabIndex = 11;
             this.chatBox.Text = "";
+            this.chatBox.TextChanged += new System.EventHandler(this.chatBox_TextChanged);
             // 
             // pictureBox1
             // 
