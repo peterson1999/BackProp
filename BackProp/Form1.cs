@@ -24,8 +24,8 @@ namespace BackProp
         public Form1()
         {
             InitializeComponent();
-            string path = @"C:\Users\Peterson\Downloads\negative-words.txt";
-            string path1 = @"C:\Users\Peterson\Downloads\positive-words.txt";
+            string path = @"C:\Users\Peterson\Downloads\greetings.txt";
+            string path1 = @"C:\Users\Peterson\Downloads\farewells.txt";
             string content = "";
             string[] train,ws;
             StreamReader sr = File.OpenText(path);
@@ -33,7 +33,7 @@ namespace BackProp
             {
                 //content = sr.ReadLine();
                 
-                d.Add(content.ToLower(), "positive");
+                d.Add(content.ToLower(), "greeting");
             }
 
             sr= File.OpenText(path1);
@@ -41,22 +41,37 @@ namespace BackProp
             {
                 //content = sr.ReadLine();
 
-                d.Add(content.ToLower(), "negative");
+                d.Add(content.ToLower(), "farewell");
             }
             foreach (var word in d.Keys)
             {
-              
-               
-                     allWords.Add(word);
+
+
+
+                ws = word.ToLower().Split(' ');
+                foreach (var w in ws)
+                {
+                    
+
+                    
+                        allWords.Add(w);
                         //Console.WriteLine(w);
                     
-                       
-             }
+
+                }
+
+
+
+            }
 
             
             bagofwords = new int[allWords.Count];
             testwords = allWords.ToArray();
             Console.WriteLine("bow:"+bagofwords.Length.ToString()+" ,tw:"+testwords.Length.ToString());
+            for (int i = 0; i < bagofwords.Length; i++)
+            {
+                Console.WriteLine(testwords[i]);
+            }
             //Console.WriteLine(bagofwords.Length);
         }
 
@@ -85,12 +100,12 @@ namespace BackProp
                 nn.setInputs(i, Convert.ToDouble(bagofwords[i]));
             }
 
-            if (classifier == "positive")
+            if (classifier == "greeting")
             {
                 nn.setDesiredOutput(0, 1.0);
                 nn.setDesiredOutput(1, 0.0);
             }
-            else if (classifier == "negative")
+            else if (classifier == "farewell")
             {
                 nn.setDesiredOutput(0, 0.0);
                 nn.setDesiredOutput(1, 1.0);
@@ -107,14 +122,14 @@ namespace BackProp
         }
         private void Learn_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 11; i++)
+            for (int i = 0; i < 500; i++)
             {
                 foreach(var set in d)
                 {
                     LearnSentences(set.Value, set.Key);
-                    Console.WriteLine("Progress:" + i);
+                   
                 }
-               
+                Console.WriteLine("Progress:" + i);
             }
         }
 
@@ -147,8 +162,8 @@ namespace BackProp
             nn.run();
             
             //if (nn.getOuputData(1) > 0.6
-            label1.Text = "sadness: " + nn.getOuputData(0).ToString();
-            label2.Text = "joy: " + nn.getOuputData(1).ToString();
+            label1.Text = "greeting: " + nn.getOuputData(0).ToString();
+            label2.Text = "farewell: " + nn.getOuputData(1).ToString();
 
         }
 
