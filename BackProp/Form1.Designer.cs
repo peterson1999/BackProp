@@ -41,6 +41,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.saveWeightsDialog = new System.Windows.Forms.SaveFileDialog();
             this.Save = new System.Windows.Forms.Button();
+            this.Load = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -166,11 +168,27 @@
             this.Save.UseVisualStyleBackColor = true;
             this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
+            // Load
+            // 
+            this.Load.Location = new System.Drawing.Point(323, 375);
+            this.Load.Name = "Load";
+            this.Load.Size = new System.Drawing.Size(75, 23);
+            this.Load.TabIndex = 11;
+            this.Load.Text = "Load";
+            this.Load.UseVisualStyleBackColor = true;
+            this.Load.Click += new System.EventHandler(this.Load_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 567);
+            this.Controls.Add(this.Load);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -208,6 +226,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.SaveFileDialog saveWeightsDialog;
         private System.Windows.Forms.Button Save;
+        private System.Windows.Forms.Button Load;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

@@ -204,5 +204,15 @@ namespace BackProp
         {
             saveWeightsDialog.ShowDialog();
         }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            nn.loadWeights(openFileDialog1.FileName);
+        }
+
+        private void Load_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+        }
     }
 }
